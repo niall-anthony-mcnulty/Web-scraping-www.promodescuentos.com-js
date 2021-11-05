@@ -1,31 +1,31 @@
 
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.service import Service
-import pandas as pd
-import re
-import requests
-import bs4
-from bs4 import BeautifulSoup
-from bs4 import SoupStrainer
-import time
-import pprint
-from datetime import datetime
-import urllib
-import base64
-import os.path
-import schedule
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import (Mail, Attachment, FileContent, FileName, FileType, Disposition, ContentId)
-import pytz
-import openpyxl
-import os
-from github import Github
-import lxml
+# from selenium import webdriver
+# from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.webdriver.chrome.service import Service
+# import pandas as pd
+# import re
+# import requests
+# import bs4
+# from bs4 import BeautifulSoup
+# from bs4 import SoupStrainer
+# import time
+# import pprint
+# from datetime import datetime
+# import urllib
+# import base64
+# import os.path
+# import schedule
+# from sendgrid import SendGridAPIClient
+# from sendgrid.helpers.mail import (Mail, Attachment, FileContent, FileName, FileType, Disposition, ContentId)
+# import pytz
+# import openpyxl
+# import os
+# from github import Github
+# import lxml
 
 
 # ---------------------- loop through website for individual URLS ------------------- #

@@ -1,6 +1,5 @@
 ## imports
 
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -61,17 +60,17 @@ def job():
         try:
             
           
-            # ### ------- Remote Driver --------###
-            # # add headless mode
-            # options = webdriver.ChromeOptions()
-            # options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
-            # options.add_argument("--headless") # Runs Chrome in headless mode.
-            # options.add_argument("--disable-gpu")
+            ### ------- Remote Driver --------###
+            # add headless mode
+            options = webdriver.ChromeOptions()
+            options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+            options.add_argument("--headless") # Runs Chrome in headless mode.
+            # # options.add_argument("--disable-gpu")
             # # options.add_argument("--disable-dev-shm-usage")
             # options.add_argument("--no-sandbox") # Bypass OS security model
-            # s=Service(os.environ.get("CHROMEDRIVER_PATH"))
-            # driver = webdriver.Chrome(service=s, options=options)
-            # driver.get(urls)
+            s=Service(os.environ.get("CHROMEDRIVER_PATH"))
+            driver = webdriver.Chrome(service=s, options=options)
+            driver.get(urls)
            
            
             ## Session data for website 
@@ -92,20 +91,20 @@ def job():
     
 
             ###------- Local Driver --------###
-            DRIVER_PATH = '/Users/Niall-McNulty/Desktop/Computer Science Projects:Courses/Web Scraping/Web-scraping-www.promodescuentos.com-js/chromedriver'
-            # add headless mode
-            options = webdriver.ChromeOptions()
-            options.add_argument("--headless") # Runs Chrome in headless mode.
-            options.add_argument("--disable-gpu")
-            options.add_argument("--disable-dev-shm-usage")
-            options.add_argument('--no-sandbox') # Bypass OS security model
-            driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
-            driver.get(urls)
+            # DRIVER_PATH = '/Users/Niall-McNulty/Desktop/Computer Science Projects:Courses/Web Scraping/Web-scraping-www.promodescuentos.com-js/chromedriver'
+            # # add headless mode
+            # options = webdriver.ChromeOptions()
+            # options.add_argument("--headless") # Runs Chrome in headless mode.
+            # options.add_argument("--disable-gpu")
+            # options.add_argument("--disable-dev-shm-usage")
+            # options.add_argument('--no-sandbox') # Bypass OS security model
+            # driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
+            # driver.get(urls)
             
     
 
             r = driver.page_source
-            soup = BeautifulSoup(r, 'lxml')
+            soup = BeautifulSoup(r, 'html.parser')
 
         #--------------------------------------------------------------------------------------------------------------------#   
         # append URL to list
@@ -192,25 +191,25 @@ def job():
             # df_nuevas_data.to_csv('promodescuentos-nuevas-sixmonths' + str(count_url) + '.csv')
             # df_nuevas_data.to_excel('promodescuentos-nuevas-sixmonths' + str(count_url) + '.xlsx', encoding='utf-8')
 
-            directory = os.path.dirname(os.path.realpath(__file__))
-            filename = "nuevas_data-test-" + str(count_url) + ".csv"
-            file_path = os.path.join(directory, 'csv/', filename)
-            # # Save to csv format to handle encoding
-            df_nuevas_data.to_csv(file_path)
+            # directory = os.path.dirname(os.path.realpath(__file__))
+            # filename = "nuevas_data-test-" + str(count_url) + ".csv"
+            # file_path = os.path.join(directory, 'csv/', filename)
+            # # # Save to csv format to handle encoding
+            # df_nuevas_data.to_csv(file_path)
 
             
-            # # save to git using PyGithub
-            # github = Github(os.environ.get('GIT_KEY'))
-            # repository = github.get_user().get_repo('Web-scraping-www.promodescuentos.com-js')
-            # #path in the repository
-            # filename = 'promodescuentos-nuevas-' + str(count_url) + '.csv'
-            # # content to write
-            # df = df_nuevas_data.to_csv(sep=',', index=False)
-            # content = df
+            # save to git using PyGithub
+            github = Github(os.environ.get('GIT_KEY'))
+            repository = github.get_user().get_repo('Web-scraping-www.promodescuentos.com-js')
+            #path in the repository
+            filename = 'promodescuentos-nuevas-' + str(count_url) + '.csv'
+            # content to write
+            df = df_nuevas_data.to_csv(sep=',', index=False)
+            content = df
         
 
-            # #create a commit message
-            # f = repository.create_file(filename, "create updated scraper csv", content)
+            #create a commit message
+            f = repository.create_file(filename, "create updated scraper csv", content)
                 
 
 
@@ -221,26 +220,26 @@ def job():
 
     df_nuevas_data.index += 1
 
-    directory = os.path.dirname(os.path.realpath(__file__))
-    filename = "nuevas_data-final.csv"
-    file_path = os.path.join(directory, 'csv/', filename)
-    # # Save to csv format to handle encoding
-    df_nuevas_data.to_csv(file_path)
+    # directory = os.path.dirname(os.path.realpath(__file__))
+    # filename = "nuevas_data-final.csv"
+    # file_path = os.path.join(directory, 'csv/', filename)
+    # # # Save to csv format to handle encoding
+    # df_nuevas_data.to_csv(file_path)
 
-    return df_nuevas_data
+    
 
-    # # save to git using PyGithub
-    # github = Github(os.environ.get('GIT_KEY'))
-    # repository = github.get_user().get_repo('Web-scraping-www.promodescuentos.com-js')
-    # #path in the repository
-    # filename = 'promodescuentos-nuevas-'+str(count_url)+'.csv'
-    # # content to write
-    # df = df_nuevas_data.to_csv(sep=',', index=False)
-    # content = df
+    # save to git using PyGithub
+    github = Github(os.environ.get('GIT_KEY'))
+    repository = github.get_user().get_repo('Web-scraping-www.promodescuentos.com-js')
+    #path in the repository
+    filename = 'promodescuentos-nuevas-'+str(count_url)+'.csv'
+    # content to write
+    df = df_nuevas_data.to_csv(sep=',', index=False)
+    content = df
 
 
-    # #create a commit message
-    # f = repository.create_file(filename, "create updated scraper csv", content)
+    #create a commit message
+    f = repository.create_file(filename, "create updated scraper csv", content)
     # Print on screen
     # df_nuevas_data.to_csv('promodescuentos-nuevas-sixmonths' + str(count_url) + '.csv')
     # df_nuevas_data.to_excel('promodescuentos-nuevas-sixmonths' + str(count_url) + '.xlsx', encoding='utf-8')
@@ -249,17 +248,17 @@ def job():
 
         
 
-# schedule.every(2).minutes.do(job)
-#     # # # # # schedule.every().hour.do(job)
-#     # # # # # schedule.every().day.at('01:57').do(job)
-#     # # # # # schedule.every(5).to(10).minutes.do(job)
-# # schedule.every().friday.at('00:30').do(job)
-# # # # # # # schedule.every().thursday.at("17:24").do(job)
-# # # # # # # schedule.every().minute.at(":17").do(job)
+schedule.every(2).minutes.do(job)
+    # # # # # schedule.every().hour.do(job)
+    # # # # # schedule.every().day.at('01:57').do(job)
+    # # # # # schedule.every(5).to(10).minutes.do(job)
+# schedule.every().friday.at('00:30').do(job)
+# # # # # # schedule.every().thursday.at("17:24").do(job)
+# # # # # # schedule.every().minute.at(":17").do(job)
 
-# while True:
-#     schedule.run_pending()
-#     time.sleep(1) # wait one second
+while True:
+    schedule.run_pending()
+    time.sleep(1) # wait one second
 
 
 # test locally ------

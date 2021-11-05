@@ -104,7 +104,7 @@ def job():
         main = driver.execute_script("return document.main.innerHTML;")
         soup = BeautifulSoup(main, 'lxml')
 
-        print(soup)
+        pprint.pprint(soup)
 
 #     #--------------------------------------------------------------------------------------------------------------------#   
 #     # append URL to list
@@ -236,11 +236,10 @@ def job():
     # content to write
     # df = df_nuevas_data.to_csv(sep=',', index=False)
     content = soup
-    print(soup)
 
 
-    # #create a commit message
-    # f = repository.create_file(filename, "create updated scraper csv", content)
+    #create a commit message
+    f = repository.create_file(filename, "create updated scraper csv", content)
     # # Print on screen
     # # df_nuevas_data.to_csv('promodescuentos-nuevas-sixmonths' + str(count_url) + '.csv')
     # # df_nuevas_data.to_excel('promodescuentos-nuevas-sixmonths' + str(count_url) + '.xlsx', encoding='utf-8')

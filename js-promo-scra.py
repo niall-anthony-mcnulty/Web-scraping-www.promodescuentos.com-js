@@ -183,7 +183,7 @@ def job():
             top_comment.append(None)
             thumbs_up.append(None)
 
-        if (count_url % 500) == 0:
+        if (count_url % 1000) == 0:
 
             data_dict = {'top_comment_user':top_comment_user,'top_comment':top_comment,'thumbs_up':thumbs_up}
             df_nuevas_data = pd.DataFrame.from_dict(data_dict)
@@ -199,18 +199,18 @@ def job():
             df_nuevas_data.to_csv(file_path)
 
             
-            # save to git using PyGithub
-            github = Github(os.environ.get('GIT_KEY'))
-            repository = github.get_user().get_repo('Web-scraping-www.promodescuentos.com')
-            #path in the repository
-            filename = 'promodescuentos-nuevas-' + str(count_url) + '.csv'
-            # content to write
-            df = df_nuevas_data.to_csv(sep=',', index=False)
-            content = df
+            # # save to git using PyGithub
+            # github = Github(os.environ.get('GIT_KEY'))
+            # repository = github.get_user().get_repo('Web-scraping-www.promodescuentos.com-js')
+            # #path in the repository
+            # filename = 'promodescuentos-nuevas-' + str(count_url) + '.csv'
+            # # content to write
+            # df = df_nuevas_data.to_csv(sep=',', index=False)
+            # content = df
         
 
-            #create a commit message
-            f = repository.create_file(filename, "create updated scraper csv", content)
+            # #create a commit message
+            # f = repository.create_file(filename, "create updated scraper csv", content)
                 
 
 
@@ -227,10 +227,11 @@ def job():
     # # Save to csv format to handle encoding
     df_nuevas_data.to_csv(file_path)
 
+    return df_nuevas_data
 
     # # save to git using PyGithub
     # github = Github(os.environ.get('GIT_KEY'))
-    # repository = github.get_user().get_repo('Web-scraping-www.promodescuentos.com')
+    # repository = github.get_user().get_repo('Web-scraping-www.promodescuentos.com-js')
     # #path in the repository
     # filename = 'promodescuentos-nuevas-'+str(count_url)+'.csv'
     # # content to write
@@ -266,6 +267,8 @@ def job():
 
 x = job()
 pprint.pprint(x)
+
+x.to_csv('test.csv')
 
 
 

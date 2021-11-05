@@ -101,10 +101,8 @@ def job():
         # driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
         # driver.get(urls)
 
-        element = driver.find_element_by_css_selector("#comments")
-        html = driver.execute_script("return arguments[0].innerHTML;", element)
         
-        # main = driver.execute_script("return document.body.innerHTML;")
+        html = driver.execute_script("return document.body.innerHTML;")
         soup = BeautifulSoup(html, 'lxml')
 
         pprint.pprint(soup)

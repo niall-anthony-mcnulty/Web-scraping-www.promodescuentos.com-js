@@ -52,7 +52,7 @@ def job():
     thumbs_up = []
 
     count_url = 1
-    for urls in arr_url[0:11]:
+    for urls in arr_url[0:1]:
         print(str(count_url) + ' ' + str(urls))
         count_url += 1
 
@@ -220,22 +220,23 @@ def job():
 
     # df_nuevas_data.index += 1
 
-    # # directory = os.path.dirname(os.path.realpath(__file__))
-    # # filename = "nuevas_data-final.csv"
-    # # file_path = os.path.join(directory, 'csv/', filename)
-    # # # # Save to csv format to handle encoding
-    # # df_nuevas_data.to_csv(file_path)
+    # directory = os.path.dirname(os.path.realpath(__file__))
+    # filename = "nuevas_data-final.csv"
+    # file_path = os.path.join(directory, 'csv/', filename)
+    # # # Save to csv format to handle encoding
+    # df_nuevas_data.to_csv(file_path)
 
     
 
-    # save to git using PyGithub
-    # github = Github(os.environ.get('GIT_KEY'))
-    # repository = github.get_user().get_repo('Web-scraping-www.promodescuentos.com-js')
-    # #path in the repository
-    # filename = 'promodescuentos-nuevas-'+str(count_url)+'.csv'
-    # # content to write
+    #save to git using PyGithub
+    github = Github(os.environ.get('GIT_KEY'))
+    repository = github.get_user().get_repo('Web-scraping-www.promodescuentos.com-js')
+    #path in the repository
+    filename = 'promodescuentos-nuevas-'+str(count_url)+'.txt'
+    # content to write
     # df = df_nuevas_data.to_csv(sep=',', index=False)
-    # content = df
+    content = soup
+    print(soup)
 
 
     # #create a commit message

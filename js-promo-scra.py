@@ -68,18 +68,12 @@ def job():
             options.add_argument("--headless") # Runs Chrome in headless mode.
             options.add_argument("--disable-gpu")
             options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("user-data-dir=cookies.json")
             options.add_argument("--no-sandbox") # Bypass OS security model
             s=Service(os.environ.get("CHROMEDRIVER_PATH"))
             driver = webdriver.Chrome(service=s, options=options)
             driver.get(urls)
 
-
-            directory = os.path.dirname(__file__)
-            filename = "cookie.pkl"
-            file_path = os.path.join(directory, filename)
-            cookies = pickle.load(open(file_path, 'rb'))
-            for cookie in cookies:
-                driver.add_cookie(cookie)
             
             r = driver.page_source
             ###------- Local Driver --------###

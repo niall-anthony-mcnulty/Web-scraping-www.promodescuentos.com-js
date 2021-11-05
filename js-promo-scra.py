@@ -101,11 +101,10 @@ def job():
         # driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
         # driver.get(urls)
         
+        main = driver.execute_script("return document.main.innerHTML;")
+        soup = BeautifulSoup(main, 'lxml')
 
-
-        r = driver.page_source
-        print(r)
-#         soup = BeautifulSoup(r, 'html.parser')
+        print(soup)
 
 #     #--------------------------------------------------------------------------------------------------------------------#   
 #     # append URL to list

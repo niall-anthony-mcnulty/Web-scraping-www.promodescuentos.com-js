@@ -53,7 +53,7 @@ def job():
     thumbs_up = []
 
     count_url = 1
-    for urls in arr_url[0:1]:
+    for urls in arr_url[0:11]:
         print(str(count_url) + ' ' + str(urls))
         count_url += 1
 
@@ -72,7 +72,12 @@ def job():
             s=Service(os.environ.get("CHROMEDRIVER_PATH"))
             driver = webdriver.Chrome(service=s, options=options)
             driver.get(urls)
-            cookies = pickle.load(open('cookie.pkl', 'rb'))
+
+
+            directory = os.path.dirname(__file__)
+            filename = "cookie.pkl"
+            file_path = os.path.join(directory, filename)
+            cookies = pickle.load(open(file_path, 'rb'))
             for cookie in cookies:
                 driver.add_cookie(cookie)
             

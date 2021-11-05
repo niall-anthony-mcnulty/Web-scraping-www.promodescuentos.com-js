@@ -1,1 +1,1 @@
-worker: python promo-scra.py
+worker: python js-promo-scra.py

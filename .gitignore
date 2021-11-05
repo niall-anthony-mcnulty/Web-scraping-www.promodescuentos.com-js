@@ -1,1 +1,16 @@
-#ignore file
+### This is the content of your .gitignore file
+### -------------------------------------------
+
+# Ignore All (xlsx) files
+*.xlsx
+!nuevas_data.xlsx
+
+*.json
+
+*.DS_Store
+
+
+!nuevas_urls.csv
+!nuevas_data.csv
+!promodescuentos-nuevas-sixmonths.csv
+*.env

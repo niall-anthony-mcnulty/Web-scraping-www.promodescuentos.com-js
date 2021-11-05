@@ -1,0 +1,1 @@
+worker: python promo-scra.py
